@@ -1,5 +1,10 @@
 <template>
   <div id="nav">
+    <a-layout>
+      <a-layout-header>Header</a-layout-header>
+      <a-layout-content>Content</a-layout-content>
+      <a-layout-footer>Footer</a-layout-footer>
+    </a-layout>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
@@ -16,7 +21,7 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 0;
 
   a {
     font-weight: bold;

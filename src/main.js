@@ -3,10 +3,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "ant-design-vue/dist/antd.css";
-import { Layout } from "ant-design-vue";
+import { Layout, Menu, Col, Row } from "ant-design-vue";
 createApp(App)
   .use(store)
   .use(router)
+  .use(Menu)
+  .use(Col)
+  .use(Row)
   .use(Layout)
   .mount("#app");
 // app.config.productionTip = false;

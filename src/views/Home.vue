@@ -1,18 +1,30 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <List :data="data"></List>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import List from "@/components/List.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
+    List
+  },
+  setup() {
+    const data = {
+      title: "mapbox",
+      list: [
+        {
+          name: "name"
+        }
+      ]
+    };
+    return {
+      data
+    };
   }
 };
 </script>

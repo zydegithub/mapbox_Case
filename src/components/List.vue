@@ -1,31 +1,24 @@
 <template>
   <div>
-    <h4>{{data.title}}</h4><ul class='change'>
-      <div v-for="demo in data.list" :key="demo.name">
-        <a href="http://localhost:5555/Examples/${demo.value}.html">
-        <img src="./images/${demo.value}.jpg" class="demoImg" alt="" />
-        <p class="demoP">${demo.name}</p></a>
-      </div>
+    <h4>{{ data.title }}</h4>
+    <div v-for="demo in data.list" :key="demo.name">
+      <img src="../assets/logo.png" class="demoImg" alt="" />
+      <p class="demoP">demo.name</p>
+    </div>
   </div>
 </template>
 <script>
 export default {
-  name:"List",
-  props:{
-    data:{
-      title:'功能',
-      list:[
-        {
-          name: 'name',
-        }
-      ]
+  name: "List",
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
     }
   },
   setup(props) {
-   console.log(props) 
+    console.log(props);
   }
-}
+};
 </script>
-<style lang="">
-  
-</style>
+<style lang=""></style>

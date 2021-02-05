@@ -1,14 +1,27 @@
 <template>
-  <div id="nav">
-    <a-layout>
-      <a-layout-header>Header</a-layout-header>
-      <a-layout-content>Content</a-layout-content>
+  <div>
+    <a-layout class="main">
+      <a-layout-header>
+        <a-row>
+          <a-col :span="20">
+            <!-- 开茶会的树洞 -->
+          </a-col>
+          <a-col :span="4">
+            <a-menu v-model="current" mode="horizontal">
+              <a-menu-item key="mail">
+                <a-icon type="mail" />MapBox
+              </a-menu-item>
+            </a-menu>
+          </a-col>
+        </a-row>
+      </a-layout-header>
+      <a-layout-content>
+        <!-- <router-link to="/">Mapbox</router-link> | -->
+        <router-view />
+      </a-layout-content>
       <a-layout-footer>Footer</a-layout-footer>
     </a-layout>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
   </div>
-  <router-view />
 </template>
 
 <style lang="scss">
@@ -17,18 +30,16 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ffffff;
+  height: 100vh;
 }
-
-#nav {
-  padding: 0;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+.main {
+  height: 100vh;
+  .ant-layout-header {
+    background: rgb(240, 242, 245);
+    color: rgb(255, 255, 255);
+    .ant-menu {
+      background: rgb(240, 242, 245);
     }
   }
 }

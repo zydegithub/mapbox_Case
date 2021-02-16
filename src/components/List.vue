@@ -1,11 +1,21 @@
 <template>
-  <div>
-    <h4>{{ data.title }}</h4>
-    <div v-for="demo in data.list" :key="demo.name">
-      <img src="../assets/logo.png" class="demoImg" alt="" />
-      <p class="demoP">demo.name</p>
-    </div>
-  </div>
+  <div>{{ data.title }}</div>
+  <a-divider style="border-color: #7cb305" dashed />
+  <a-card
+    v-for="demo in data.list"
+    :key="demo.name"
+    hoverable
+    @click="routerTo(demo.name, demo.desc)"
+    style="width: 300px"
+  >
+    <template #cover>
+      <img alt="example" :src="demo.image" />
+    </template>
+    <a-card-meta :title="demo.name">
+      <template #description>{{ demo.desc }}</template>
+    </a-card-meta>
+  </a-card>
+  <a-divider style="height: 2px; background-color: #7cb305" />
 </template>
 <script>
 export default {
@@ -16,8 +26,11 @@ export default {
       default: () => {}
     }
   },
-  setup(props) {
-    console.log(props);
+  setup() {},
+  methods: {
+    routerTo(title, desc) {
+      this.$router.push({ name: "Case", params: { title, desc } });
+    }
   }
 };
 </script>

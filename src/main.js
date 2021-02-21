@@ -3,6 +3,8 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "ant-design-vue/dist/antd.css";
+import VueHighlightJS from "vue3-highlightjs";
+import "highlight.js/styles/solarized-light.css";
 import {
   Layout,
   Menu,
@@ -28,6 +30,7 @@ createApp(App)
   .use(Breadcrumb)
   .use(Drawer)
   .use(Button)
+  .use(VueHighlightJS)
   .mount("#app");
 // app.config.productionTip = false;
 // app.use(Button);

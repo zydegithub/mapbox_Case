@@ -15,13 +15,14 @@ export default {
   },
   setup() {
     const data = ref({
-      title: "mapbox",
+      title: "基础",
       list: [
         {
-          name: "name",
-          desc: "描述",
+          name: "点线面",
+          desc: "基础点线面",
+          functionName: "addBase",
           image:
-            "https://hhxy-blog.oss-cn-zhangjiakou.aliyuncs.com/music/%E6%AF%9B%E4%B8%8D%E6%98%93.jpg"
+            "https://hhxy-blog.oss-cn-zhangjiakou.aliyuncs.com/mapbox_Case/icon/addBase.png"
         }
       ]
     });

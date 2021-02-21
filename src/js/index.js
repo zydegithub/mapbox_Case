@@ -1,4 +1,4 @@
 import { addPoint } from "./point";
-console.log(addPoint);
-const sMap = { addPoint };
+import { addBase } from "./base";
+const sMap = { addPoint, addBase };
 export default sMap;

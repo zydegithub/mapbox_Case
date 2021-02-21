@@ -5,7 +5,7 @@
     v-for="demo in data.list"
     :key="demo.name"
     hoverable
-    @click="routerTo(demo.name, demo.desc)"
+    @click="routerTo(demo.name, demo.desc, demo.functionName)"
     style="width: 300px"
   >
     <template #cover>
@@ -28,8 +28,11 @@ export default {
   },
   setup() {},
   methods: {
-    routerTo(title, desc) {
-      this.$router.push({ name: "Case", params: { title, desc } });
+    routerTo(title, desc, functionName) {
+      this.$router.push({
+        name: "Case",
+        params: { title, desc, functionName }
+      });
     }
   }
 };

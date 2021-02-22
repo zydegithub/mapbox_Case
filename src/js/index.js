@@ -1,4 +1,3 @@
-import { addPoint } from "./point";
-import { addBase } from "./base";
-const sMap = { addPoint, addBase };
+import { addBase, addFillExtrusion } from "./base";
+const sMap = { addBase, addFillExtrusion };
 export default sMap;

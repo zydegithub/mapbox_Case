@@ -18,9 +18,16 @@ export default {
       title: "基础",
       list: [
         {
-          name: "点线面",
+          name: "点-线-面",
           desc: "基础点线面",
           functionName: "addBase",
+          image:
+            "https://hhxy-blog.oss-cn-zhangjiakou.aliyuncs.com/mapbox_Case/icon/addBase.png"
+        },
+        {
+          name: "体块",
+          desc: "有高度的面",
+          functionName: "addFillExtrusion",
           image:
             "https://hhxy-blog.oss-cn-zhangjiakou.aliyuncs.com/mapbox_Case/icon/addBase.png"
         }

@@ -100,4 +100,49 @@ function addBase(map) {
     }
   });
 }
-export { addBase };
+function addFillExtrusion(map) {
+  // geojson格式数据
+  // 面
+  const polygonData = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [116.38752937316895, 39.907859855577165],
+              [116.39570474624634, 39.907859855577165],
+              [116.39570474624634, 39.91083076519556],
+              [116.38752937316895, 39.91083076519556],
+              [116.38752937316895, 39.907859855577165]
+            ]
+          ]
+        }
+      }
+    ]
+  };
+  // 添加数据源
+  map.addSource("polygon", {
+    type: "geojson",
+    data: polygonData
+  });
+  // 添加图层
+  map.addLayer({
+    id: "polygon",
+    type: "fill-extrusion",
+    source: "polygon",
+    layout: {},
+    paint: {
+      "fill-extrusion-color": "#aaa", // 体块颜色
+      "fill-extrusion-height": 100, // 体块高度
+      "fill-extrusion-base": 0, // 体块基础高度
+      "fill-extrusion-opacity": 0.6 // 透明度
+    }
+  });
+  // 缩放至
+  map.flyTo({ pitch: 70, bearing: 30 });
+}
+export { addBase, addFillExtrusion };

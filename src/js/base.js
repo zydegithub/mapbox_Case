@@ -74,8 +74,8 @@ function addBase(map) {
     type: "symbol",
     source: "point",
     layout: {
-      "icon-size": 3,
-      "icon-image": "museum-15"
+      "icon-size": 3, //图标大小
+      "icon-image": "museum-15" //图片名称
     },
     paint: {}
   });
@@ -85,8 +85,8 @@ function addBase(map) {
     source: "line",
     layout: {},
     paint: {
-      "line-color": "#fbb03b",
-      "line-width": 2.5
+      "line-color": "#fbb03b", //线颜色
+      "line-width": 2.5 // 线宽
     }
   });
   map.addLayer({
@@ -95,8 +95,8 @@ function addBase(map) {
     source: "polygon",
     layout: {},
     paint: {
-      "fill-color": "#fbb03b",
-      "fill-opacity": 0.7
+      "fill-color": "#fbb03b", //面颜色
+      "fill-opacity": 0.7 // 面透明度
     }
   });
 }
@@ -145,4 +145,135 @@ function addFillExtrusion(map) {
   // 缩放至
   map.flyTo({ pitch: 70, bearing: 30 });
 }
-export { addBase, addFillExtrusion };
+function addCircle(map) {
+  const pointData = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Point",
+          coordinates: [116.39104843139647, 39.912287369097186]
+        }
+      }
+    ]
+  };
+  // 添加数据源
+  map.addSource("point", {
+    type: "geojson",
+    data: pointData
+  });
+  // 添加圆图层
+  map.addLayer({
+    id: "point",
+    type: "circle",
+    source: "point",
+    paint: {
+      "circle-radius": 15, //圆半径
+      "circle-color": "purple" //圆颜色
+    }
+  });
+}
+
+function addHeatMap(map) {
+  // 本示例为官方示例改动而成
+  map.addSource("earthquakes", {
+    type: "geojson",
+    // 数据为mapbox官方数据
+    data: "https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
+  });
+
+  map.addLayer(
+    {
+      id: "earthquakes-heat",
+      type: "heatmap",
+      source: "earthquakes",
+      maxzoom: 9,
+      paint: {
+        // 根据频率和属性大小增加热力图权重
+        "heatmap-weight": [
+          "interpolate",
+          ["linear"],
+          ["get", "mag"],
+          0,
+          0,
+          6,
+          1
+        ],
+        // 根据缩放级别增加热力图权重
+        // heatmap-intensity 是热力图权重的乘数
+        "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 0, 1, 9, 3],
+        // 色带
+        "heatmap-color": [
+          "interpolate",
+          ["linear"],
+          ["heatmap-density"],
+          0,
+          "rgba(33,102,172,0)",
+          0.2,
+          "rgb(103,169,207)",
+          0.4,
+          "rgb(209,229,240)",
+          0.6,
+          "rgb(253,219,199)",
+          0.8,
+          "rgb(239,138,98)",
+          1,
+          "rgb(178,24,43)"
+        ],
+        // 根据缩放级别调整热力图半径
+        "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 9, 20],
+        // 透明度
+        "heatmap-opacity": ["interpolate", ["linear"], ["zoom"], 7, 1, 9, 0]
+      }
+    },
+    "waterway-label"
+  );
+  // 添加第二个热力图，两个热力图叠加效果更好
+  map.addLayer(
+    {
+      id: "earthquakes-point",
+      type: "circle",
+      source: "earthquakes",
+      minzoom: 7,
+      paint: {
+        "circle-radius": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          7,
+          ["interpolate", ["linear"], ["get", "mag"], 1, 1, 6, 4],
+          16,
+          ["interpolate", ["linear"], ["get", "mag"], 1, 5, 6, 50]
+        ],
+        "circle-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "mag"],
+          1,
+          "rgba(33,102,172,0)",
+          2,
+          "rgb(103,169,207)",
+          3,
+          "rgb(209,229,240)",
+          4,
+          "rgb(253,219,199)",
+          5,
+          "rgb(239,138,98)",
+          6,
+          "rgb(178,24,43)"
+        ],
+        "circle-stroke-color": "white",
+        "circle-stroke-width": 1,
+        "circle-opacity": ["interpolate", ["linear"], ["zoom"], 7, 0, 8, 1]
+      }
+    },
+    "waterway-label"
+  );
+  map.flyTo({
+    center: [-120, 50],
+    zoom: 5
+  });
+}
+export { addBase, addFillExtrusion, addCircle, addHeatMap };

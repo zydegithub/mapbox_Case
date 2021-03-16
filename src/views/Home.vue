@@ -1,6 +1,13 @@
 <template>
   <div class="home">
-    <List :data="data"></List>
+    <List :data="base"></List>
+    <List :data="point"></List>
+    <List :data="line"></List>
+    <List :data="polygon"></List>
+    <List :data="extrusion"></List>
+    <List :data="label"></List>
+    <List :data="interactive"></List>
+    <List :data="extendRender"></List>
   </div>
 </template>
 
@@ -14,7 +21,7 @@ export default {
     List
   },
   setup() {
-    const data = ref({
+    const base = ref({
       title: "基础",
       list: [
         {
@@ -54,8 +61,44 @@ export default {
         }
       ]
     });
+    const point = ref({
+      title: "点",
+      list: []
+    });
+    const label = ref({
+      title: "注记",
+      list: []
+    });
+    const line = ref({
+      title: "线",
+      list: []
+    });
+    const polygon = ref({
+      title: "面",
+      list: []
+    });
+    const extrusion = ref({
+      title: "体块",
+      list: []
+    });
+    const interactive = ref({
+      title: "交互与事件",
+      list: []
+    });
+    const extendRender = ref({
+      title: "扩展",
+      list: []
+    });
+
     return {
-      data
+      base,
+      point,
+      label,
+      line,
+      polygon,
+      extrusion,
+      interactive,
+      extendRender
     };
   }
 };

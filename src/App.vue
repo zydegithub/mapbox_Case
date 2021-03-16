@@ -41,7 +41,6 @@ export default {
 </script>
 <style>
 .layout {
-  height: 100vh;
 }
 .site-layout-content {
   min-height: 280px;

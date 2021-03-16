@@ -44,6 +44,13 @@ export default {
           functionName: "addHeatMap",
           image:
             "https://hhxy-blog.oss-cn-zhangjiakou.aliyuncs.com/mapbox_Case/icon/addBase.png"
+        },
+        {
+          name: "天空",
+          desc: "天空图层",
+          functionName: "addSky",
+          image:
+            "https://hhxy-blog.oss-cn-zhangjiakou.aliyuncs.com/mapbox_Case/icon/addBase.png"
         }
       ]
     });

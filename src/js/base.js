@@ -276,4 +276,40 @@ function addHeatMap(map) {
     zoom: 5
   });
 }
-export { addBase, addFillExtrusion, addCircle, addHeatMap };
+
+function addSky(map) {
+  map.addLayer({
+    id: "sky",
+    type: "sky",
+    paint: {
+      // 渐进天空
+      "sky-type": "gradient",
+      // 中间白，向外逐渐扩散
+      // 模拟了地平线以下太阳的外观
+      "sky-gradient": [
+        "interpolate",
+        ["linear"],
+        ["sky-radial-progress"],
+        0.8,
+        "rgba(135, 206, 235, 1.0)",
+        1,
+        "rgba(0,0,0,0.1)"
+      ],
+      "sky-gradient-center": [0, 0],
+      "sky-gradient-radius": 90,
+      "sky-opacity": [
+        "interpolate",
+        ["exponential", 0.1],
+        ["zoom"],
+        5,
+        0,
+        22,
+        1
+      ]
+    }
+  });
+  map.flyTo({
+    pitch: 80
+  });
+}
+export { addBase, addFillExtrusion, addCircle, addHeatMap, addSky };

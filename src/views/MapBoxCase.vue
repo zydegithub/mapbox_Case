@@ -74,7 +74,8 @@ export default {
 
       this.map.on("load", () => {
         if (!this.functionName) {
-          new Error("未传函数");
+          this.$router.push("/");
+          return console.log(new Error("未传函数"));
         }
         this.code = sMap[this.functionName];
         sMap[this.functionName](this.map);

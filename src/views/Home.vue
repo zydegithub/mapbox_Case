@@ -58,6 +58,13 @@ export default {
           functionName: "addSky",
           image:
             "https://hhxy-blog.oss-cn-zhangjiakou.aliyuncs.com/mapbox_Case/icon/addBase.png"
+        },
+        {
+          name: "唯一值渲染",
+          desc: "根据属性的值进行相应的渲染",
+          functionName: "uniqueValue",
+          image:
+            "https://hhxy-blog.oss-cn-zhangjiakou.aliyuncs.com/mapbox_Case/icon/addBase.png"
         }
       ]
     });

@@ -312,4 +312,118 @@ function addSky(map) {
     pitch: 80
   });
 }
-export { addBase, addFillExtrusion, addCircle, addHeatMap, addSky };
+function uniqueValue(map) {
+  // 数据
+  const data = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {
+          name: "1"
+        },
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [116.38585567474364, 39.92099342895789],
+              [116.38615608215332, 39.91622086779371],
+              [116.39057636260985, 39.91655002062137],
+              [116.39049053192137, 39.921125081103234],
+              [116.38585567474364, 39.92099342895789]
+            ]
+          ]
+        }
+      },
+      {
+        type: "Feature",
+        properties: {
+          name: "2"
+        },
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [116.39104843139647, 39.92102634201797],
+              [116.39117717742919, 39.91655002062137],
+              [116.39503955841063, 39.91684625681369],
+              [116.39469623565674, 39.920960515882015],
+              [116.39104843139647, 39.92102634201797]
+            ]
+          ]
+        }
+      },
+      {
+        type: "Feature",
+        properties: {
+          name: "3"
+        },
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [116.38628482818604, 39.91576005117727],
+              [116.38662815093993, 39.91227091046905],
+              [116.39044761657713, 39.91243549657234],
+              [116.39049053192137, 39.91618795242394],
+              [116.38628482818604, 39.91576005117727]
+            ]
+          ]
+        }
+      },
+      {
+        type: "Feature",
+        properties: {
+          name: "4"
+        },
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [116.39139175415039, 39.91612212163695],
+              [116.39147758483887, 39.91240257938332],
+              [116.39516830444335, 39.91266591645252],
+              [116.39486789703369, 39.91628669848582],
+              [116.39139175415039, 39.91612212163695]
+            ]
+          ]
+        }
+      }
+    ]
+  };
+  map.addSource("polygon", {
+    type: "geojson",
+    data: data
+  });
+  // 添加图层
+  map.addLayer({
+    id: "uniquePolygon",
+    type: "fill",
+    source: "polygon",
+    paint: {
+      "fill-color": [
+        "match",
+        // 通过字段name进行唯一值渲染
+        // 属性值为1的颜色为rgb(255,0,0),红色
+        ["get", "name"],
+        "1",
+        "rgb(255,0,0)",
+        "2",
+        "rgb(255,255,0)",
+        "3",
+        "rgb(0,255,0)",
+        // 没有被指定颜色的属性值，默认为该颜色
+        "rgb(0,255,255)"
+      ]
+    },
+    layout: {}
+  });
+}
+export {
+  addBase,
+  addFillExtrusion,
+  addCircle,
+  addHeatMap,
+  addSky,
+  uniqueValue
+};
